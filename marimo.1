@@ -1,0 +1,30 @@
+.TH MARIMO 1 "Jury 24, 2024" "1.0" "General Commands Manual"
+.SH NAME
+marimo \- Manage and grow marimo
+.SH SYNOPSIS
+.B marimo
+[\fB-wq\fR \fIwater-quality\fR] [\fB-cw\fR \fIchange-water\fR] [\fB-n\fR \fIname\fR] [\fB-r\fR \fIreset\fR]
+.SH DESCRIPTION
+The \fBmarimo\fR command is used to manage and grow a marimo.
+
+The options are as follows:
+.TP
+.B -wq
+Display the current water quality. Water quality is displayed by default. Water quality affects the growth of the marimo.
+.TP
+.B -cw
+Change the water, setting the water quality to 100%.
+.TP
+.B -n
+Change the name of the marimo.
+.TP
+.B -r
+Reset the marimo's growth and delete all data. A confirmation prompt will be displayed, but please note that once deleted, the data cannot be restored. It is recommended to use this option when you first install or download the marimo command.
+.SH NOTES
+These options cannot be used together.
+.SH WATER QUALITY AND GROWTH RATE
+Water quality decreases by 2% per hour. When the water quality is 100%, the marimo grows at a rate of 0.000007mm per second. As water quality deteriorates, the growth rate of the marimo decreases. It is advisable to regularly use the \fB-cw\fR option to change the water.
+.SH REAL-TIME MONITORING
+To watch the marimo's growth in real-time, it is recommended to use the \fBwatch\fR command in conjunction.
+.SH AUTHOR
+\fBmarimo\fR was written by Takahashi Kakeru.

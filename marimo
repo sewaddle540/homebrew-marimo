@@ -1,0 +1,113 @@
+#!/bin/zsh
+
+# 設定ファイルのパス
+MARIMO_FILE=~/.marimo_data
+
+initialize_marimo() {
+  echo "name=Marimo" > $MARIMO_FILE
+  echo "size=1.000000" >> $MARIMO_FILE
+  echo "water_quality=100" >> $MARIMO_FILE
+  echo "last_updated=$(date +%s)" >> $MARIMO_FILE
+}
+
+load_marimo_data() {
+  if ! [ -f $MARIMO_FILE ]; then
+    initialize_marimo
+  fi
+  source $MARIMO_FILE
+}
+
+save_marimo_data() {
+  echo "name=$name" > $MARIMO_FILE
+  echo "size=$size" >> $MARIMO_FILE
+  echo "water_quality=$water_quality" >> $MARIMO_FILE
+  echo "last_updated=$last_updated" >> $MARIMO_FILE
+}
+
+update_marimo_growth() {
+  local now=$(date +%s)
+  local time_diff=$((now - last_updated))
+
+  # 水質に基づく成長率の計算
+  local growth_rate_per_second=$(printf "%.8f" "$(echo "scale=8; ($water_quality / 100) * 0.000007" | bc)")
+  local growth=$(printf "%.8f" "$(echo "scale=8; $growth_rate_per_second * $time_diff" | bc)")
+  
+  # 新しい大きさの計算
+  local new_size=$(printf "%.6f" "$(echo "scale=6; $size + $growth" | bc)")
+  
+  # 水質の減少を秒単位で計算
+  local water_quality_decrease_per_second=$(printf "%.8f" "$(echo "scale=8; 1 / (30 * 60)" | bc)")
+  local water_quality_decrease=$(printf "%.8f" "$(echo "scale=8; $water_quality_decrease_per_second * $time_diff" | bc)")
+  local new_water_quality=$(printf "%.0f" "$(echo "$water_quality - $water_quality_decrease" | bc)")
+  [ $new_water_quality -lt 0 ] && new_water_quality=0
+
+  last_updated=$now
+  size=$new_size
+  water_quality=$new_water_quality
+
+  save_marimo_data
+}
+
+print_marimo_status() {
+  echo "$name  Water-Quality:$water_quality%  Size:$(printf "%.6f" $size)mm"
+}
+
+handle_options() {
+  update_marimo_growth
+  
+  local option1=$1
+  local option2=$2
+
+  if [[ -n $option2 ]]; then
+    echo "marimo: options cannot be used together."
+    return 1
+  fi
+
+  case $option1 in
+    -cw)
+      # 水換えオプション
+      water_quality=100
+      echo "Changed water."
+      ;;
+    -wq)
+      # 水質表示オプション(何もせずにステータスを表示)
+      ;;
+    -r)
+      # リセットオプション
+      read "reset?Do you want to reset marimo growth? (y/n): "
+      if [[ $reset == "y" ]]; then
+        initialize_marimo
+        source $MARIMO_FILE  # Initialize後新しいデータを読み込み直す
+        echo "Reseted marimo."
+      fi
+      ;;
+    -n)
+      # 名前変更オプション
+      read "new_name?Change name?: "
+      name=$new_name
+      echo "Changed name."
+      ;;
+    "")
+      # オプションが指定されていない場合は、marimoのステータスを表示する
+      ;;
+    *)
+      echo "marimo: Invalid argument $option1"
+      echo "usage: marimo [-wq water-quality] [-cw change-water] [-n name] [-r reset]"
+      return 1
+      ;;
+  esac
+
+  save_marimo_data
+  return 0
+}
+
+main() {
+  load_marimo_data
+  handle_options "$@"
+  if [[ $? -ne 0 ]]; then
+    exit 1
+  fi
+  print_marimo_status
+}
+
+main "$@"
