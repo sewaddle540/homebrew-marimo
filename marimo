@@ -3,6 +3,9 @@
 # 設定ファイルのパス
 MARIMO_FILE=~/.marimo_data
 
+# 言語判定 (LANGの環境変数で判断)
+lang=$(echo $LANG | cut -d '_' -f 1)
+
 initialize_marimo() {
   echo "name=Marimo" > $MARIMO_FILE
   echo "size=1.000000" >> $MARIMO_FILE
@@ -49,7 +52,11 @@ update_marimo_growth() {
 }
 
 print_marimo_status() {
-  echo "$name  Water-Quality:$water_quality%  Size:$(printf "%.6f" $size)mm"
+  if [[ $lang == "ja" ]]; then
+    echo "$name  水質:$water_quality%  大きさ:$(printf "%.6f" $size)mm"
+  else
+    echo "$name  Water-Quality:$water_quality%  Size:$(printf "%.6f" $size)mm"
+  fi
 }
 
 handle_options() {
@@ -59,7 +66,11 @@ handle_options() {
   local option2=$2
 
   if [[ -n $option2 ]]; then
-    echo "marimo: options cannot be used together."
+    if [[ $lang == "ja" ]]; then
+      echo "marimo: オプションは併用できません。"
+    else
+      echo "marimo: options cannot be used together."
+    fi
     return 1
   fi
 
@@ -67,32 +78,54 @@ handle_options() {
     -cw)
       # 水換えオプション
       water_quality=100
-      echo "Changed water."
+      if [[ $lang == "ja" ]]; then
+        echo "水換えしました。"
+      else
+        echo "Changed water."
+      fi
       ;;
     -wq)
       # 水質表示オプション(何もせずにステータスを表示)
       ;;
     -r)
       # リセットオプション
-      read "reset?Do you want to reset marimo growth? (y/n): "
+      if [[ $lang == "ja" ]]; then
+        read "reset?まりもの成長をリセットしますか？ (y/n): "
+      else
+        read "reset?Do you want to reset marimo growth? (y/n): "
+      fi
       if [[ $reset == "y" ]]; then
         initialize_marimo
         source $MARIMO_FILE  # Initialize後新しいデータを読み込み直す
-        echo "Reseted marimo."
+        if [[ $lang == "ja" ]]; then
+          echo "リセットしました。"
+        else
+          echo "Reseted marimo."
+        fi
       fi
       ;;
     -n)
       # 名前変更オプション
-      read "new_name?Change name?: "
+      if [[ $lang == "ja" ]]; then
+        read "new_name?名前を変更してください: "
+        echo "名前を変更しました。"
+      else
+        read "new_name?Change name?: "
+        echo "Changed name."
+      fi
       name=$new_name
-      echo "Changed name."
       ;;
     "")
       # オプションが指定されていない場合は、marimoのステータスを表示する
       ;;
     *)
-      echo "marimo: Invalid argument $option1"
-      echo "usage: marimo [-wq water-quality] [-cw change-water] [-n name] [-r reset]"
+      if [[ $lang == "ja" ]]; then
+        echo "marimo: $option1 は無効なオプションです。"
+        echo "使用法: marimo [-wq 水質] [-cw 水換え] [-n 名前] [-r リセット]"
+      else
+        echo "marimo: Invalid argument $option1"
+        echo "usage: marimo [-wq water-quality] [-cw change-water] [-n name] [-r reset]"
+      fi
       return 1
       ;;
   esac
