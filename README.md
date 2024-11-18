@@ -1,23 +1,23 @@
-# Marimoコマンド
+# Marimo Command
 
-まりもを管理・育成するためのシンプルなコマンドラインツールです。デジタル上でまりもを育成し、成長を追跡します。水質や成長データを管理し、実際のまりも育成のような感覚を楽しむことができます。
+A simple command-line tool for managing and growing your digital marimo moss ball. Grow your marimo virtually, monitor growth, and manage water quality to simulate the experience of nurturing a real marimo.
 
-## 機能
+## Features
 
-- まりもの成長を管理
-- 水質の表示・管理
-- まりもの名前を変更
-- まりもの成長をリセット
-- `zsh`と互換性あり
+- Manage marimo growth
+- Display and manage water quality
+- Rename your marimo
+- Reset marimo growth
+- Compatible with `zsh`
 
-## 要件
+## Requirements
 
-- **zsh**（Zシェル）がこのコマンドの実行に必要です。インストールされていない場合は、HomebrewやAPTでインストールされますが、zshがプリインストールされていない環境では、zshを手動でインストールする必要があります。
+- **zsh** (Z Shell) is required to run this command. If zsh is not installed, it will be installed via Homebrew or APT. However, for environments without pre-installed zsh, you may need to install it manually.
 
-## インストール
+## Installation
 
-- yourusernameのところは自身のgithubユーザ名を入れてください。
-### Homebrew（macOSまたはLinux）
+- Replace `yourusername` with your GitHub username.
+### Homebrew (macOS or Linux)
 
 ```bash
 brew tap yourusername/marimo
@@ -26,35 +26,35 @@ brew install marimo
 
 ### APT(Debian/Ubuntu)
 
-1.リポジトリをソースリストに追加します：
+1.Add the repository to your source list:
 
 ```bash
 sudo add-apt-repository ppa:yourusername/marimo
 sudo apt-get update
 ```
 
-2.パッケージをインストールします：
+2.Install the package:
 
 ```bash
 sudo apt-get install marimo
 ```
 
-### 手動インストール
-1.リポジトリをクローンします：
+### Manual Installation
+1.Clone the repository:
 
 ```bash
 git clone https://github.com/yourusername/marimo.git
 cd marimo
 ```
 
-2.スクリプトをインストールします：
+2.Install the script:
 
 ```bash
 sudo cp marimo /usr/local/bin/
 sudo chmod +x /usr/local/bin/marimo
 ```
 
-3.(オプション)マニュアルページをインストールします：
+3.(Optional) Install the manual page:
 
 ```bash
 sudo cp man/marimo.1 /usr/share/man/man1/
@@ -62,22 +62,22 @@ sudo gzip /usr/share/man/man1/marimo.1
 ```
 
 
-## 使い方
+## Usage
 
-`marimo`と実行するだけでまりもの成長を管理できます：
+Run `marimo` to manage marimo growth:
 
 ```bash
 marimo [-wq] [-cw] [-n] [-r]
 ```
 
-### オプション
+### Options
 
-- `-wq`:水質の表示(入力しなくてもデフォルトで表示されます)
-- `-cw`:水の交換（水質を100％にします）
-- `-n`:まりもの名前を変更
-- `-r`:まりもの成長をリセット
+- `-wq`:Display water quality (displayed by default)
+- `-cw`:Change water (sets water quality to 100%)
+- `-n`:Rename your marimo
+- `-r`:Reset marimo growth
 
-### 実行例
+### Examples
 ```bash
 $ marimo
 Marimo  Water-Quality:96%  Size:5.021007mm
