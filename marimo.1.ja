@@ -27,4 +27,4 @@ marimo \- まりもの成長を管理します。
 .SH モニタリング
 まりもの成長をリアルタイムで見たい時は、\fBwatch\fRコマンドの使用を推奨します。
 .SH 著者
-\fBmarimo\fRは髙橋 駆によって作られました。
+\fBmarimo\fRはSewaddleによって作られました。
