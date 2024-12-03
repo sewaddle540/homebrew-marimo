@@ -16,7 +16,6 @@
 
 ## インストール
 
-- yourusernameのところは自身のgithubユーザ名を入れてください。
 ### Homebrew（macOSまたはLinux）
 
 ```bash
@@ -26,10 +25,12 @@ brew install marimo
 
 ### APT(Debian/Ubuntu)
 
-1.リポジトリをソースリストに追加します：
+**近日公開**
+
+<!-- 1.リポジトリをソースリストに追加します：
 
 ```bash
-sudo add-apt-repository ppa:yourusername/marimo
+sudo add-apt-repository ppa:sewaddle540/marimo
 sudo apt-get update
 ```
 
@@ -37,13 +38,13 @@ sudo apt-get update
 
 ```bash
 sudo apt-get install marimo
-```
+``` -->
 
 ### 手動インストール
 1.リポジトリをクローンします：
 
 ```bash
-git clone https://github.com/yourusername/marimo.git
+git clone https://github.com/sewaddle540/marimo.git
 cd marimo
 ```
 
