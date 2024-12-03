@@ -25,7 +25,7 @@ brew install marimo
 
 ### APT(Debian/Ubuntu)
 
-**近日公開**
+**近日公開予定...**
 
 <!-- 1.リポジトリをソースリストに追加します：
 
