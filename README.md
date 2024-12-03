@@ -16,20 +16,21 @@ A simple command-line tool for managing and growing your digital marimo moss bal
 
 ## Installation
 
-- Replace `yourusername` with your GitHub username.
 ### Homebrew (macOS or Linux)
 
 ```bash
-brew tap yourusername/marimo
+brew tap sewaddle540/marimo
 brew install marimo
 ```
 
 ### APT(Debian/Ubuntu)
 
-1.Add the repository to your source list:
+**Coming soon...**
+
+<!-- 1.Add the repository to your source list:
 
 ```bash
-sudo add-apt-repository ppa:yourusername/marimo
+sudo add-apt-repository ppa:sewaddle540/marimo
 sudo apt-get update
 ```
 
@@ -37,13 +38,13 @@ sudo apt-get update
 
 ```bash
 sudo apt-get install marimo
-```
+``` -->
 
 ### Manual Installation
 1.Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/marimo.git
+git clone https://github.com/sewaddle540/marimo.git
 cd marimo
 ```
 
