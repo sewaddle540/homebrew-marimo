@@ -1,3 +1,11 @@
+./" 
+./" marimo 1.0
+./" Copyright (c) 2024, Sewaddle
+./" 
+./" Created 2024-7-24
+./" Last uploaded 2024-12-12
+./" 
+
 .TH MARIMO 1 "Jury 24, 2024" "1.0" "General Commands Manual"
 .SH 名称
 marimo \- まりもの成長を管理します。
