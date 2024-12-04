@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+#
+# Copyright (c) 2024, Sewaddle
+# 
+# marimo is relesased under the MIT license.
+# See LICENSE file for details.
+# 
+# Created 2024-7-24
+# Last uploaded 2024-12-12
+#
+
 # 設定ファイルのパス
 MARIMO_FILE=~/.marimo_data
 
