@@ -13,7 +13,7 @@
 # 設定ファイルのパス
 MARIMO_FILE=~/.marimo_data
 
-# 言語判定 (LANGの環境変数で判断)
+# 言語判定
 lang=$(echo $LANG | cut -d '_' -f 1)
 
 initialize_marimo() {
