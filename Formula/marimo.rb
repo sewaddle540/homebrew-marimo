@@ -5,7 +5,7 @@ class Marimo < Formula
     sha256 "114fe1d2c9a605c61917f3141d4038cf4e4ec008a04dcb947d107e8d2b0fe141"
     license "MIT"
   
-    depends_on "zsh"
+    depends_on "zsh"　unless File.exist?("/usr/bin/zsh")
   
     def install
       bin.install "marimo" 
