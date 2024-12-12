@@ -15,7 +15,7 @@ class Marimo < Formula
 #      if ENV["LANG"].to_s.start_with?("ja")
 #        man1.install "marimo.1.ja" => "marimo.1"
 #      end
-#    end
+    end
   
     test do
 
