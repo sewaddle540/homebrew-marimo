@@ -2,7 +2,7 @@ class Marimo < Formula
     desc "A command-line tool for managing and growing digital marimo moss balls"
     homepage "https://github.com/sewaddle540/marimo"
     url "https://github.com/sewaddle540/marimo/archive/v1.0.tar.gz"
-    sha256 "1027c9859588526a4f8bdccd22ba5353fe5a230e66db4cb9a0052b8bdcf26c07"
+    sha256 "114fe1d2c9a605c61917f3141d4038cf4e4ec008a04dcb947d107e8d2b0fe141"
     license "MIT"
   
     depends_on "zsh"
