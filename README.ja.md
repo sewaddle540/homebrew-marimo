@@ -19,7 +19,7 @@
 ### Homebrew（macOSまたはLinux）
 
 ```bash
-brew tap yourusername/marimo
+brew tap sewaddle540/marimo
 brew install marimo
 ```
 
